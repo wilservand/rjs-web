@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // Replace this URL with your production backend URL once deployed
-            const response = await fetch('http://13.229.80.9:8000/api/chat', {
+            const response = await fetch('https://rjs-chatbot-backend.onrender.com/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
