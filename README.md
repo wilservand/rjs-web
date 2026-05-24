@@ -54,4 +54,4 @@ To connect the chatbot to your live backend server:
 
 - **Developer:** Wilhelmus Ervando Walangare
 - **Affiliation:** PT. Renindo Jaya Sukses
-- **Portfolio:** [wervando.vercel.app](https://wervando.vercel.app)
+- **Portfolio:** [wilservand.dev](https://wilservand.dev)
