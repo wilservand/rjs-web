@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Throttle Helper ---
     function throttle(fn, wait) {
         let time = Date.now();
-        return function() {
+        return function () {
             if ((time + wait - Date.now()) < 0) {
                 fn();
                 time = Date.now();
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Active Link Highlighting on Scroll ---
     const sections = document.querySelectorAll('section');
-    
+
     const handleScrollHighlight = () => {
         let current = '';
         sections.forEach(section => {
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: "0px 0px -50px 0px"
     };
 
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
         entries.forEach(entry => {
             if (!entry.isIntersecting) {
                 return;
@@ -106,11 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const wrapperDiv = document.createElement('div');
         wrapperDiv.id = indicatorId;
         wrapperDiv.classList.add('message', 'bot-message');
-        
+
         const indicatorDiv = document.createElement('div');
         indicatorDiv.classList.add('typing-indicator');
         indicatorDiv.innerHTML = '<span></span><span></span><span></span>';
-        
+
         wrapperDiv.appendChild(indicatorDiv);
         chatMessages.appendChild(wrapperDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -122,14 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
         messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-        
+
         // Parse Markdown using marked if available
         if (sender === 'bot' && typeof marked !== 'undefined') {
             messageDiv.innerHTML = marked.parse(text);
         } else {
             messageDiv.textContent = text;
         }
-        
+
         chatMessages.appendChild(messageDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to bottom
     }
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // Replace this URL with your production backend URL once deployed
-            const response = await fetch('http://localhost:8000/api/chat', {
+            const response = await fetch('http://13.229.80.9:8000/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -163,14 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const data = await response.json();
-            
+
             // Remove typing indicator
             const indicatorElement = document.getElementById(indicatorId);
             if (indicatorElement) indicatorElement.remove();
 
             if (response.ok) {
                 appendMessage(data.reply, 'bot');
-                
+
                 // Keep history updated locally
                 chatHistory.push({ role: 'user', parts: text });
                 chatHistory.push({ role: 'model', parts: data.reply });
